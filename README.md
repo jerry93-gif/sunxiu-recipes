@@ -212,3 +212,31 @@ sunxiu-recipes/
 
 - 少数笔记（如沙茶三虾烩意面、贵州酸汤意面、咖喱牛肋排、干煸红烧肉、炒鱿鱼拌饭、苹果炖鸡排第二版、越南粉保姆级等）原视频未附文字配方，正文 intro 中已注明「按常规做法整理」，未虚构原作者的独家用量。
 - 收藏夹里有 3 条「青椒水煮排骨」、2 条「苹果炖鸡排」、2 条「越南粉」，均按独立条目保留，并在正文写明彼此差异，未做合并删除。
+
+---
+
+## 线上地址与更新方式
+
+- **线上地址**：<https://jerry93-gif.github.io/sunxiu-recipes/>
+- **源码仓库**：<https://github.com/jerry93-gif/sunxiu-recipes>
+- **托管**：GitHub Pages（main 分支 / root，纯静态，无构建）
+
+### 怎么更新
+
+改了 `assets/data.js` 或页面之后，在工作目录执行：
+
+```bash
+/Users/sunyuehaoran/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/bin/python3 publish.py "更新说明"
+```
+
+`publish.py` 走 GitHub API（`api.github.com`）发布，**不依赖 `git push`**——
+因为本机到 `github.com` 的 HTTPS 经常超时，而 API 一直稳定。
+它只会上传真正变化的文件，提交后 GitHub Pages 会在 30–90 秒内自动构建。
+
+令牌存放在 `.secrets/gh_token`（权限 600，已被 `.gitignore` 排除）。
+
+### 自动巡检
+
+已配置每月 20 日 20:00 的定时任务，自动检查小红书收藏专辑有没有新增菜品，
+整理成菜谱后发布上线，并汇报新增了哪些菜。
+
