@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>孙秀菜谱大全 · 小红书收藏菜谱整理</title>
+<meta name="description" content="把小红书「吃的」收藏专辑里的菜，按中餐/西餐、荤/素两条逻辑分类，并整理成可照着做的原料与步骤。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23a8352a'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Songti SC,serif' text-anchor='middle' fill='%23fff8ec'%3E%E9%A3%9F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=1794910868">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-mark">孙秀</span>
+    <span class="brand-text">
+      <strong>孙秀菜谱大全</strong>
+      <em>Sun Xiu's Recipe Book</em>
+    </span>
+  </a>
+  <nav class="nav">
+    <a href="#featured">精编菜谱</a>
+    <a href="#taxonomy">分类体系</a>
+    <a href="#library">全部菜谱</a>
+  </nav>
+  <div class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+    <input id="searchInput" type="search" placeholder="搜菜名、食材，如「牛腩」「豆腐」" autocomplete="off">
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ---------------------------------------------------------------- hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="kicker">小红书 · 「吃的」收藏专辑</p>
+      <h1>孙秀菜谱大全</h1>
+      <p class="hero-sub">把收藏夹里的菜，一道一道变成<span>能照着做</span>的菜谱。<br>
+        先用两条逻辑打标签——中餐／西餐分菜系，荤／素分主料；再把每道菜写成原料表与逐步做法。</p>
+      <div class="stats">
+        <div class="stat"><b id="statTotal">144</b><span>菜谱（不含 2 条非菜谱笔记）</span></div>
+        <div class="stat"><b id="statFull">5</b><span>已精编菜谱</span></div>
+        <div class="stat"><b id="statPending">139</b><span>待整理</span></div>
+        <div class="stat"><b id="statTag">20</b><span>分类标签</span></div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#featured">看菜谱 →</a>
+        <a class="btn btn-ghost" href="#taxonomy">先看分类</a>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true">
+      <div class="seal">食<br>单</div>
+      <div class="hero-vertical">一 菜 一 谱<br>慢 慢 做 完</div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- featured -->
+  <section id="featured" class="section">
+    <div class="sec-head">
+      <h2><span class="num">01</span>本期精编</h2>
+      <p>已整理成「原料 → 步骤」的菜谱，可直接下厨。全部 <b id="fullCount">5</b> 道精编都在下方菜谱库；其余 <span id="pendingInline">139</span> 道已入库、待逐道补全。</p>
+    </div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- taxonomy -->
+  <section id="taxonomy" class="section">
+    <div class="sec-head">
+      <h2><span class="num">02</span>两条分类逻辑</h2>
+      <p>同一道菜同时挂两套标签：点标签即可筛选，点击已选标签取消。</p>
+    </div>
+
+    <div class="logic">
+      <div class="logic-head">
+        <h3>逻辑一 · 菜系</h3>
+        <span class="logic-note">中餐 → 地方菜系　·　西餐 → 国别与风格</span>
+      </div>
+      <div class="logic-body" id="taxRegion"></div>
+    </div>
+
+    <div class="logic">
+      <div class="logic-head">
+        <h3>逻辑二 · 荤素与主料</h3>
+        <span class="logic-note">荤 → 猪／牛／羊／禽／鱼／虾蟹　·　素 → 豆制品／菌菇／绿叶菜／根茎瓜果</span>
+      </div>
+      <div class="logic-body" id="taxKind"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- library -->
+  <section id="library" class="section">
+    <div class="sec-head sec-head-row">
+      <div>
+        <h2><span class="num">03</span>全部菜谱库</h2>
+        <p id="resultCount">共 144 道</p>
+      </div>
+      <div class="active-filters" id="activeFilters"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>没有符合条件的菜谱，试试清空筛选。</p>
+  </section>
+
+  <section class="section about">
+    <div class="sec-head">
+      <h2><span class="num">04</span>关于这份菜谱</h2>
+    </div>
+    <div class="about-body">
+      <p>「孙秀菜谱大全」整理自小红书收藏专辑 <a id="boardLink" href="https://www.xiaohongshu.com/board/68e641fc00000000130228c0" target="_blank" rel="noopener">「吃的」</a>，
+      共 <b>144</b> 篇笔记。分类采用两条并行逻辑：<b>菜系</b>（中餐的地方菜 / 西餐的国别风格）与 <b>荤素主料</b>（以主要食材归类）。</p>
+      <p>目前 5 道已写成完整菜谱：原料按「主料 / 调味 / 点缀」分组，步骤逐步拆开并标注关键点。其余笔记已按标题自动打上标签，正文待逐道整理——
+      自动标签仅作为索引，正式入册时会逐条人工校对。</p>
+      <p class="fineprint">菜谱内容整理自原笔记视频的字幕与画面，如有食材份量、火候差异，以原笔记为准。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>孙秀菜谱大全 · 一菜一谱，慢慢做完</div>
+  <div class="footer-date">数据整理于 2026-11</div>
+</footer>
+
+<!-- ---------------------------------------------------------------- modal -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-scrim" data-close></div>
+  <article class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <button class="sheet-close" data-close aria-label="关闭">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="sheet-inner" id="sheetInner"></div>
+  </article>
+</div>
+
+<script src="assets/data.js?v=1794910868"></script>
+<script src="assets/app.js?v=1794910868"></script>
+</body>
+</html>
